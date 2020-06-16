@@ -1,0 +1,10 @@
+{
+  "name": "challenge-payment",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "UNLICENSED",
+  "repository": "git@github.com:anxolin/challenge-payment.git",
+  "dependencies": {
+    "papaparse": "^5.2.0"
+  }
+}
