@@ -4,7 +4,11 @@
   "main": "src/index.js",
   "license": "UNLICENSED",
   "repository": "git@github.com:anxolin/challenge-payment.git",
+  "scripts": {
+    "gen": "node src/index.js"
+  },
   "dependencies": {
-    "papaparse": "^5.2.0"
+    "bignumber.js": "^9.0.0",
+    "csv-parser": "^2.3.3"
   }
 }
