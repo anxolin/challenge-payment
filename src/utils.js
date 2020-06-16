@@ -52,8 +52,14 @@ i.e.
   return [inputFile, outputFile];
 }
 
+function writeJson(filePath, data) {
+  const jsonContent = JSON.stringify(data, null, 2);
+  fs.writeFileSync(filePath, jsonContent, "utf8");
+}
+
 // module.exports.parseCsvFile = parseCsvFile;
 module.exports = {
+  writeJson,
   getInputOutputFiles,
   parseCsvFile,
   raise,
