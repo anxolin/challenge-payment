@@ -1,7 +1,7 @@
 const BigNumber = require("bignumber.js");
 
+const { GNO_ADDRESS } = require("./const");
 const { getInputOutputFiles, parseCsvFile, writeJson } = require("./utils");
-const GNO_ADDRESS = "0x6810e776880C02933D47DB1b9fc05908e5386b96";
 
 function toPayment(leaderBoardItem) {
   const { trader: receiver, gno_estimation: amount } = leaderBoardItem;
