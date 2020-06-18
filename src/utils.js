@@ -1,6 +1,7 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 var path = require("path");
+const BigNumber = require("bignumber.js");
 
 async function parseCsvFile(filePath) {
   return new Promise((resolve, reject) => {
@@ -44,6 +45,31 @@ i.e.
   }
 
   return outputFile;
+}
+
+function getPaymentSummaries(payments) {
+  return payments.reduce((acc, payment) => {
+    const { amount, amountOriginal, tokenAddress } = payment;
+
+    if (!acc.has(tokenAddress)) {
+      acc.set(tokenAddress, {
+        count: 0,
+        amount: new BigNumber(0),
+        amountOriginal: new BigNumber(0),
+      });
+    }
+
+    // Aggregate the payment into the summaries
+    const tokenPaymentSummary = acc.get(tokenAddress);
+    tokenPaymentSummary.count++;
+
+    tokenPaymentSummary.amount = tokenPaymentSummary.amount.plus(amount);
+    tokenPaymentSummary.amountOriginal = tokenPaymentSummary.amountOriginal.plus(
+      amountOriginal
+    );
+
+    return acc;
+  }, new Map());
 }
 
 function writeJson(filePath, data) {
@@ -96,5 +122,6 @@ module.exports = {
   getInputOutputFiles,
   getOutputFile,
   parseCsvFile,
+  getPaymentSummaries,
   raise,
 };
