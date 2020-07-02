@@ -34,6 +34,7 @@ async function main() {
 
   // Print a summary of the payments
   const paymentSummaries = getPaymentSummaries(payments);
+  console.log(`The leader board contains ${results.length} participants`);
   console.log(`The file contain ${payments.length} payments:`);
   for (let [tokenAddress, paymentSummary] of paymentSummaries) {
     const { amount, amountOriginal, count } = paymentSummary;
