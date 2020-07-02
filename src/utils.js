@@ -18,6 +18,39 @@ function raise(message) {
   process.exit(1);
 }
 
+function getOutputFile() {
+  // Parse arguments. Let's keep it simple. now minimist/yargs for now
+  var arguments = process.argv.slice(2);
+
+  // Validate the number of arguments
+  if (arguments.length !== 1) {
+    raise(
+      `Error in parameters: The script expects exactly one argument:
+  * Output file (JSON file)
+
+Provided ${arguments.length} parameters: "${arguments}"
+
+i.e.
+      yarn mock rinkeby-gno-payments.json
+`
+    );
+  }
+
+  const [outputFile] = arguments;
+  console.log("Output JSON file: %s", outputFile);
+
+  if (path.extname(outputFile).toLowerCase() !== ".json") {
+    raise("The output file should be a JSON file");
+  }
+
+  return outputFile;
+}
+
+function writeJson(filePath, data) {
+  const jsonContent = JSON.stringify(data, null, 2);
+  fs.writeFileSync(filePath, jsonContent, "utf8");
+}
+
 function getInputOutputFiles() {
   // Parse arguments. Let's keep it simple. now minimist/yargs for now
   var arguments = process.argv.slice(2);
@@ -52,15 +85,11 @@ i.e.
   return [inputFile, outputFile];
 }
 
-function writeJson(filePath, data) {
-  const jsonContent = JSON.stringify(data, null, 2);
-  fs.writeFileSync(filePath, jsonContent, "utf8");
-}
-
 // module.exports.parseCsvFile = parseCsvFile;
 module.exports = {
   writeJson,
   getInputOutputFiles,
+  getOutputFile,
   parseCsvFile,
   raise,
 };

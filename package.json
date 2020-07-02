@@ -5,7 +5,8 @@
   "license": "UNLICENSED",
   "repository": "git@github.com:anxolin/challenge-payment.git",
   "scripts": {
-    "gen": "node src/index.js"
+    "gen": "node src/index.js",
+    "mock": "node src/mock.js"
   },
   "dependencies": {
     "bignumber.js": "^9.0.0",
