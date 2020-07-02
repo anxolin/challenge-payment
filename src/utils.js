@@ -51,11 +51,6 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, jsonContent, "utf8");
 }
 
-function writeJson(filePath, data) {
-  const jsonContent = JSON.stringify(data, null, 2);
-  fs.writeFileSync(filePath, jsonContent, "utf8");
-}
-
 function getInputOutputFiles() {
   // Parse arguments. Let's keep it simple. now minimist/yargs for now
   var arguments = process.argv.slice(2);
