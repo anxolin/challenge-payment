@@ -16,8 +16,8 @@ function toPayment(leaderBoardItem) {
   return {
     tokenAddress: GNO_ADDRESS,
     receiver,
-    amountOriginal,
-    amount: amountRounded,
+    amountRounded,
+    amount: amountOriginal,
   };
 }
 
