@@ -50,9 +50,9 @@ async function main() {
 
   // Prepare data object to print into file (discard unneeded fields)
   const paymentsData = payments.map(
-    ({ amount, amountOriginal, receiver, tokenAddress }) => ({
+    ({ amount, amountRounded, receiver, tokenAddress }) => ({
       amount: amount.toString(10),
-      amountOriginal: amountOriginal.toString(10),
+      amountRounded: amountRounded.toString(10),
       receiver,
       tokenAddress,
     })
